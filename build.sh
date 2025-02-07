@@ -10,6 +10,11 @@ created() {
   docker image history --format json "$image" | tail -n1 | jq -r '.CreatedAt'
 }
 
+debug_changed=0
+if git show --oneline --name-only -- debug | grep -q .; then
+  debug_changed=1
+fi
+
 for source in $(<sources); do
   if [[ $(created $source) != $(created 65532/$source) ]]; then
     docker build --build-arg BASE="$source" -t 65532/$source .
@@ -17,7 +22,7 @@ for source in $(<sources); do
   fi
   if [[ $source == debian:latest ]] || [[ $source == ubuntu:latest ]]; then
     image="65532/${source//:latest}:debug"
-    if [[ $(created $image) != $(created 65532/$source) ]]; then
+    if [[ $debug_changed == 1 ]] || [[ $(created $image) != $(created 65532/$source) ]]; then
       # For latest images, make a debug variant, with useful command line utilities, etc.
       docker build --build-arg BASE="65532/$source" -t $image debug
       docker push $image
