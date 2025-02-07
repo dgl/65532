@@ -44,6 +44,18 @@ With Kubernetes:
 kubectl run -it --image=65532/debian test
 ```
 
+or more usefully:
+
+```shell
+kubectl debug -it --image=65532/debian:debug --profile=restricted -n namespace pod --target=container
+```
+
+(This needs a version of kubectl that has a restricted profile that matches the
+[restricted PSP](https://github.com/kubernetes/kubernetes/pull/117543), i.e. >=
+1.28. The version of kubectl matters, not the version of any cluster
+components.)
+
 There are tags matching the codenames of the releases for Debian and Ubuntu,
-latest points at the same place as the upstream tag. See
+`:latest` points at the same place as the upstream tag, as well as a more
+useful `:debug` [variant](debug/Dockerfile). See also
 https://hub.docker.com/u/65532.
