@@ -17,7 +17,7 @@ for source in $(<sources); do
   fi
   if [[ $source == debian:latest ]] || [[ $source == ubuntu:latest ]]; then
     image="65532/${source//:latest}:debug"
-    if true || [[ $(created $image) != $(created 65532/$source) ]]; then
+    if [[ $(created $image) != $(created 65532/$source) ]]; then
       # For latest images, make a debug variant, with useful command line utilities, etc.
       docker build --build-arg BASE="65532/$source" -t $image debug
       docker push $image
