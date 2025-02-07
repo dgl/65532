@@ -8,7 +8,7 @@ set -ex
 apt-get -y update
 # Some of these may need root, but useful to have around anyway as a user can
 # easily run this container as root if permissions allow.
-apt-get install -y --no-install-recommends tcpdump net-tools iputils-ping iputils-tracepath traceroute curl wget bind9-dnsutils skopeo netcat-openbsd openssh-client openssl strace ltrace gdb bash-completion man less vim-tiny bpfcc-tools bpftrace psmisc procps htop btop iproute2 numactl
+apt-get install -y --no-install-recommends tcpdump net-tools iputils-ping iputils-tracepath traceroute curl wget bind9-dnsutils skopeo netcat-openbsd openssh-client openssl strace ltrace gdb bash-completion man less vim-tiny bpfcc-tools bpftrace psmisc procps htop btop iproute2 numactl ca-certificates
 
 # Because Ubuntu want to push snap on you they don't ship kubectl, sigh. Debian win.
 # Using the packaged version sets up bash completion for us, much nicer.
