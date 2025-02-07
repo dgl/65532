@@ -1,6 +1,7 @@
 # 65532
 
-What? This is the UID of the "nonroot" user in Google's distroless images.
+What? This is the UID of the "nonroot" user in Google's
+[distroless](https://github.com/GoogleContainerTools/distroless) images.
 
 Sometimes it's useful to have a full image where it has a proper user account
 that matches this non-root UID.
