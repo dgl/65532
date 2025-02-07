@@ -16,9 +16,10 @@ It has some downsides though, many application images can safely run as a
 non-root user by default, but OS images usually expect a user to customise them
 via a Dockerfile.
 
-These are useful to use as an image with `kubectl debug`, among some other use
-cases. You probably don't want to base your container on them, just add a
-non-root user yourself.
+These are useful to use as an image with [`kubectl
+debug`](https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/#ephemeral-container),
+among some other use cases. You probably don't want to base your container on
+them, just add a non-root user yourself.
 
 ### Can't you just set the UID?
 
@@ -51,7 +52,7 @@ kubectl debug -it --image=65532/debian:debug --profile=restricted -n namespace p
 ```
 
 (This needs a version of kubectl that has a restricted profile that matches the
-[restricted PSP](https://github.com/kubernetes/kubernetes/pull/117543), i.e. >=
+[restricted PSS](https://github.com/kubernetes/kubernetes/pull/117543), i.e. >=
 1.28. The version of kubectl matters, not the version of any cluster
 components.)
 
